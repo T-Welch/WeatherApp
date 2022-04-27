@@ -1,0 +1,14 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "gson-2.2.4.jar",
+        "/Users/trevor/Documents/javafx-sdk-17.0.2/lib/javafx-swt.jar",
+        "/Users/trevor/Documents/javafx-sdk-17.0.2/lib/javafx.base.jar",
+        "/Users/trevor/Documents/javafx-sdk-17.0.2/lib/javafx.controls.jar",
+        "/Users/trevor/Documents/javafx-sdk-17.0.2/lib/javafx.fxml.jar",
+        "/Users/trevor/Documents/javafx-sdk-17.0.2/lib/javafx.graphics.jar",
+        "/Users/trevor/Documents/javafx-sdk-17.0.2/lib/javafx.media.jar",
+        "/Users/trevor/Documents/javafx-sdk-17.0.2/lib/javafx.swing.jar",
+        "/Users/trevor/Documents/javafx-sdk-17.0.2/lib/javafx.web.jar"
+    ]
+}
