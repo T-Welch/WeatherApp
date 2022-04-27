@@ -9,7 +9,7 @@ public class WxMain extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("./weatherApp.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("./WxView.fxml"));
         
         Scene scene = new Scene(root);
         

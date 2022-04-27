@@ -61,6 +61,7 @@ public class WxController implements Initializable {
         try {
           if (weather.URLisValid(weather.urlForLatLongFromZip(zipcode)))
           {
+            btnGetWeather.setText("Get Weather");
             JsonElement jse = weather.getJSONwithAllInfo(weather.urlwithLatLon(weather.getLat(weather.getJSONObjWithLatLong(weather.urlForLatLongFromZip(zipcode))),
             weather.getLon(weather.getJSONObjWithLatLong(weather.urlForLatLongFromZip(zipcode)))));
 
@@ -68,8 +69,8 @@ public class WxController implements Initializable {
             lblCityName.setText( "City: "+ weather.getinfoSring(jse, "name"));
             lblTime.setText(weather.unixTimetoLocalTime(weather.getinfoLong(jse, "dt")));
             lblWeather.setText("Conditions: " + weather.getinfoArray(jse, "weather"));
-            lblTemperature.setText("Temp: " + String.valueOf(weather.getinfoSring( weather.getJSONobjFromJSONobj(jse, "main"), "temp")) + "°F");
-            lblWindSpeed.setText("Wind Speed: " + weather.getinfoSring(weather.getJSONobjFromJSONobj(jse, "wind"), "speed") + " MPH");
+            lblTemperature.setText("Temp: " + weather.tempOneDecimal(weather.getinfoSring( weather.getJSONobjFromJSONobj(jse, "main"), "temp")));
+            lblWindSpeed.setText("Wind Speed: " + weather.windSpeed(weather.getinfoSring(weather.getJSONobjFromJSONobj(jse, "wind"), "speed")));
             // pressure is in hectapascals and we need it in inches of mercury. 1 Hectopascals = 0.0295 Inches of mercury. Need to do 
             // conversion in a function also need to limit digits after decimal points to 2 
             lblPressure.setText("Pressure: " + weather.pressureInInhg(weather.getinfoSring( weather.getJSONobjFromJSONobj(jse, "main"), "pressure")) + "inHg");
@@ -85,12 +86,14 @@ public class WxController implements Initializable {
           else
           {
             lblCityName.setText("Invalid Zipcode");
-            lblTime.setText("");
-            lblWeather.setText("");
-            lblTemperature.setText("");
-            // lblWind.setText("");
-            // lblPressure.setText("");
-            // lblVisibility.setText("");
+            lblTime.setText("Invalid Zipcode");
+            lblWeather.setText("Invalid Zipcode");
+            lblTemperature.setText("Invalid Zipcode");
+            lblWindSpeed.setText("Invalid Zipcode");
+            lblPressure.setText("Invalid Zipcode");          
+            lblHumdity.setText("Invalid Zipcode");
+            lblWindDirection.setText("Invalid Zipcode");
+            btnGetWeather.setText("Try again");
             imgIcon.setImage(new Image("badzipcode.png"));
           }
         } catch (MalformedURLException e1) {

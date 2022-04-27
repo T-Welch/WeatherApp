@@ -156,6 +156,24 @@ return bufferedImage;
 			return strPressure;
 
 		}
+		public String tempOneDecimal (String temperature) {
+			String strTemperature = "";
+			Double temp = Double.parseDouble(temperature); 
+			strTemperature = String.format("%.1f°F",temp);
+
+			return strTemperature;
+
+		}
+		public String windSpeed (String speed) {
+			String strSpeed = "";
+			Double spd = Double.parseDouble(speed); 
+			strSpeed = String.format("%.1fMPH",spd);
+
+			return strSpeed;
+
+		}
+
+
 
 
 
