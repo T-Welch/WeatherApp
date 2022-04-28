@@ -58,6 +58,19 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 
 	}
 
+	public String getHumidity() {
+		String humidity ="Humidity: " + json.getAsJsonObject().get("main").getAsJsonObject().get("humidity").getAsString() + "%";
+
+
+		return humidity;
+	}
+
+	public String getPressure() {
+		return "";
+	}
+
+
+
 	public URL urlForLatLongFromZip(String zipcode) throws MalformedURLException {
 
 		URL formedURL = new URL("http://api.openweathermap.org/geo/1.0/zip?zip=" + zipcode + ",US&appid=" + API_KEY + "&units=imperial");

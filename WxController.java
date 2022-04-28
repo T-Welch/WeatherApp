@@ -77,7 +77,7 @@ public class WxController implements Initializable {
             // conversion in a function also need to limit digits after decimal points to 2 
             //lblPressure.setText("Pressure: " + weather.pressureInInhg(weather.getinfoSring( weather.getJSONobjFromJSONobj("main"), "pressure")) + "inHg");
             //lblWindDirection.setText("Wind Direction: " + weather.windDegreeAsDirection(weather.getinfoSring(weather.getJSONobjFromJSONobj("wind"), "deg")));
-            //lblHumdity.setText("Humidity: " + String.valueOf(weather.getinfoSring( weather.getJSONobjFromJSONobj("main"), "humidity")) + "%");
+            lblHumdity.setText(weather.getHumidity());
             // lblVisibility.setText(weather.getVisibility());
             weather.getTemp();
             // System.out.println(weather.getIconID());
