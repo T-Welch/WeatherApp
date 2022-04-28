@@ -60,24 +60,19 @@ public class WxController implements Initializable {
     
         // Use the model to get the weather information
         try {
-          if (weather.URLisValid(weather.urlForLatLongFromZip(zipcode)))
+          if (weather.URLisValid())
           {
             btnGetWeather.setText("Get Weather");
             lblCityName.setText( "City: "+ weather.getCityName());
-            // lblTime.setText(weather.unixTimetoLocalTime(weather.getinfoLong("dt")));
-            // lblWeather.setText("Conditions: " + weather.getinfoArray("weather"));
+            lblTime.setText("Date and Time: " + weather.getTime());
+            lblWeather.setText("Conditions: " + weather.getWeatherConditions());
             lblTemperature.setText("Temperature: " + weather.getTemp());
             lblWindSpeed.setText("Wind Speed: " + weather.getWindSpeed());
-            // pressure is in hectapascals and we need it in inches of mercury. 1 Hectopascals = 0.0295 Inches of mercury. Need to do 
-            // conversion in a function also need to limit digits after decimal points to 2 
             lblPressure.setText("Pressure: " + weather.getPressure() + "inHg");
             lblWindDirection.setText("Wind Direction: " + weather.getWindDIrection());
             lblHumdity.setText(weather.getHumidity());
-            // lblVisibility.setText(weather.getVisibility());
             weather.getTemp();
-            // System.out.println(weather.getIconID());
-            // Image image = SwingFXUtils.toFXImage(weather.getImageFromIconID(weather.getIconID()), null);
-            // imgIcon.setImage(image);
+            imgIcon.setImage(weather.getImage());
             
 
           }
@@ -92,7 +87,7 @@ public class WxController implements Initializable {
             lblHumdity.setText("Invalid Zipcode");
             lblWindDirection.setText("Invalid Zipcode");
             btnGetWeather.setText("Try again");
-            imgIcon.setImage(new Image("badzipcode.png"));
+            imgIcon.setImage(weather.errorImage());
           }
         } catch (MalformedURLException e1) {
           // TODO Auto-generated catch block
