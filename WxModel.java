@@ -71,9 +71,17 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 		String pressure = String.format("%.2f", dblPressure);
 		return pressure;
 	}
+	public String getWindSpeed () {
+		String strSpeed = "";
+		Double spd = Double.parseDouble(json.getAsJsonObject().get("wind").getAsJsonObject().get("speed").getAsString()); 
+		strSpeed = String.format("%.1fMPH",spd);
+
+		return strSpeed;
+
+	}
 
 	public String getWindDIrection() {
-		Integer degrees = Integer.parseInt(json.getAsJsonObject().get("main").getAsJsonObject().get("pressure").getAsString());
+		Integer degrees = Integer.parseInt(json.getAsJsonObject().get("wind").getAsJsonObject().get("deg").getAsString());
 		String direction = "";
 
 		if (degrees >= 337.5 || degrees < 22.5) {
@@ -238,14 +246,7 @@ return bufferedImage;
 			return true;
 			}
 		}
-		public String windSpeed (String speed) {
-			String strSpeed = "";
-			Double spd = Double.parseDouble(speed); 
-			strSpeed = String.format("%.1fMPH",spd);
 
-			return strSpeed;
-
-		}
 
 
 
