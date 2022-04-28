@@ -75,7 +75,7 @@ public class WxController implements Initializable {
             //lblWindSpeed.setText("Wind Speed: " + weather.windSpeed(weather.getinfoSring(weather.getJSONobjFromJSONobj("wind"), "speed")));
             // pressure is in hectapascals and we need it in inches of mercury. 1 Hectopascals = 0.0295 Inches of mercury. Need to do 
             // conversion in a function also need to limit digits after decimal points to 2 
-            //lblPressure.setText("Pressure: " + weather.pressureInInhg(weather.getinfoSring( weather.getJSONobjFromJSONobj("main"), "pressure")) + "inHg");
+            lblPressure.setText("Pressure: " + weather.getPressure() + "inHg");
             //lblWindDirection.setText("Wind Direction: " + weather.windDegreeAsDirection(weather.getinfoSring(weather.getJSONobjFromJSONobj("wind"), "deg")));
             lblHumdity.setText(weather.getHumidity());
             // lblVisibility.setText(weather.getVisibility());

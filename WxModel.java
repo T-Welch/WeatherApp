@@ -66,7 +66,10 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 	}
 
 	public String getPressure() {
-		return "";
+		Double dblPressure = Double.parseDouble(json.getAsJsonObject().get("main").getAsJsonObject().get("pressure").getAsString());
+		dblPressure = dblPressure * 0.0295;
+		String pressure = String.format("%.2f", dblPressure);
+		return pressure;
 	}
 
 
@@ -196,17 +199,6 @@ return bufferedImage;
 			return true;
 			}
 		}
-
-		public String pressureInInhg (String hectopascals) {
-			String strPressure = "";
-			double pressure = Double.parseDouble(hectopascals); 
-			pressure = pressure * 0.0295;
-			strPressure = String.format("%.2f",pressure);
-
-			return strPressure;
-
-		}
-
 		public String windSpeed (String speed) {
 			String strSpeed = "";
 			Double spd = Double.parseDouble(speed); 
