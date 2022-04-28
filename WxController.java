@@ -56,30 +56,33 @@ public class WxController implements Initializable {
     
         // Get zipcode
         String zipcode = txtZipCode.getText();
+        weather.getWx(zipcode);
     
         // Use the model to get the weather information
         try {
           if (weather.URLisValid(weather.urlForLatLongFromZip(zipcode)))
           {
             btnGetWeather.setText("Get Weather");
-            JsonElement jse = weather.getJSONwithAllInfo(weather.urlwithLatLon(weather.getLat(weather.getJSONObjWithLatLong(weather.urlForLatLongFromZip(zipcode))),
-            weather.getLon(weather.getJSONObjWithLatLong(weather.urlForLatLongFromZip(zipcode)))));
+            // JsonElement jse = weather.getJSONwithAllInfo(weather.urlwithLatLon(weather.getLat(weather.getJSONObjWithLatLong(weather.urlForLatLongFromZip(zipcode))),
+            // weather.getLon(weather.getJSONObjWithLatLong(weather.urlForLatLongFromZip(zipcode)))));
+            // weather.getWx(zipcode);
 
-            System.out.println(weather.getinfoSring(jse, "name"));
-            lblCityName.setText( "City: "+ weather.getinfoSring(jse, "name"));
-            lblTime.setText(weather.unixTimetoLocalTime(weather.getinfoLong(jse, "dt")));
-            lblWeather.setText("Conditions: " + weather.getinfoArray(jse, "weather"));
-            lblTemperature.setText("Temp: " + weather.tempOneDecimal(weather.getinfoSring( weather.getJSONobjFromJSONobj(jse, "main"), "temp")));
-            lblWindSpeed.setText("Wind Speed: " + weather.windSpeed(weather.getinfoSring(weather.getJSONobjFromJSONobj(jse, "wind"), "speed")));
+            // System.out.println(weather.getinfoSring("name"));
+            // lblCityName.setText( "City: "+ weather.getinfoSring("name"));
+            // lblTime.setText(weather.unixTimetoLocalTime(weather.getinfoLong("dt")));
+            // lblWeather.setText("Conditions: " + weather.getinfoArray("weather"));
+            lblTemperature.setText("Temperature: " + weather.getTemp());
+            //lblWindSpeed.setText("Wind Speed: " + weather.windSpeed(weather.getinfoSring(weather.getJSONobjFromJSONobj("wind"), "speed")));
             // pressure is in hectapascals and we need it in inches of mercury. 1 Hectopascals = 0.0295 Inches of mercury. Need to do 
             // conversion in a function also need to limit digits after decimal points to 2 
-            lblPressure.setText("Pressure: " + weather.pressureInInhg(weather.getinfoSring( weather.getJSONobjFromJSONobj(jse, "main"), "pressure")) + "inHg");
-            lblWindDirection.setText("Wind Direction: " + weather.windDegreeAsDirection(weather.getinfoSring(weather.getJSONobjFromJSONobj(jse, "wind"), "deg")));
-            lblHumdity.setText("Humidity: " + String.valueOf(weather.getinfoSring( weather.getJSONobjFromJSONobj(jse, "main"), "humidity")) + "%");
+            //lblPressure.setText("Pressure: " + weather.pressureInInhg(weather.getinfoSring( weather.getJSONobjFromJSONobj("main"), "pressure")) + "inHg");
+            //lblWindDirection.setText("Wind Direction: " + weather.windDegreeAsDirection(weather.getinfoSring(weather.getJSONobjFromJSONobj("wind"), "deg")));
+            //lblHumdity.setText("Humidity: " + String.valueOf(weather.getinfoSring( weather.getJSONobjFromJSONobj("main"), "humidity")) + "%");
             // lblVisibility.setText(weather.getVisibility());
-            System.out.println(weather.getIconID(jse));
-            Image image = SwingFXUtils.toFXImage(weather.getImageFromIconID(weather.getIconID(jse)), null);
-            imgIcon.setImage(image);
+            weather.getTemp();
+            // System.out.println(weather.getIconID());
+            // Image image = SwingFXUtils.toFXImage(weather.getImageFromIconID(weather.getIconID()), null);
+            // imgIcon.setImage(image);
             
 
           }

@@ -24,6 +24,40 @@ public class WxModel
 public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 
 
+	private JsonElement json;
+
+	public void getWx(String zipCode) {
+		URL wuURL;
+		try {
+			wuURL = new URL("https://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + ",US&appid=" + API_KEY
+					+ "&units=imperial");
+			System.out.println(wuURL);
+
+			InputStream is = wuURL.openStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			json = new JsonParser().parse(br);
+			is.close();
+			br.close();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public String getTemp() {
+		String temp = "";
+		temp = json.getAsJsonObject().get("main").getAsJsonObject().get("temp").getAsString();
+		Double dbltemp = Double.parseDouble(temp); 
+		temp = String.format("%.1f°F",dbltemp);
+
+		return temp;
+
+	}
+
 	public URL urlForLatLongFromZip(String zipcode) throws MalformedURLException {
 
 		URL formedURL = new URL("http://api.openweathermap.org/geo/1.0/zip?zip=" + zipcode + ",US&appid=" + API_KEY + "&units=imperial");
@@ -33,6 +67,9 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 		return formedURL;
 	}
 
+
+
+
 	public JsonElement getJSONObjWithLatLong(URL urlWithZipCode) throws IOException {
 		InputStream inputStream = urlWithZipCode.openStream();
 		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
@@ -41,7 +78,7 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 		return jse;
 	} 
 
-	public String getLat(JsonElement json) {
+	public String getLat() {
 
 		String lat = json.getAsJsonObject().get("lat").getAsString();
 		return lat;
@@ -49,7 +86,7 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 
 	}
 
-	public String getLon(JsonElement json) {
+	public String getLon() {
 
 		String lon = json.getAsJsonObject().get("lon").getAsString();
 		return lon;
@@ -82,7 +119,7 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 
 	}
 
-	public Long getinfoLong(JsonElement json, String key) {
+	public Long getinfoLong(String key) {
 		Long info = json.getAsJsonObject().get(key).getAsLong();
 
 		return info;
@@ -90,18 +127,18 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 	}
 
 
-	public String getinfoSring(JsonElement json, String key) {
+	public String getinfoSring(String key) {
 		String info = json.getAsJsonObject().get(key).getAsString();
 
 		return info;
 
 	}
-	public String getinfoArray(JsonElement json, String key) {
+	public String getinfoArray(String key) {
 		String info = json.getAsJsonObject().get(key).getAsJsonArray().get(0).getAsJsonObject().get("main").getAsString();
 		return info;
 	}
 
-	public String getIconID(JsonElement json) {
+	public String getIconID() {
 
 		String info = json.getAsJsonObject().get("weather").getAsJsonArray().get(0).getAsJsonObject().get("icon").getAsString();
 		return info;
@@ -125,7 +162,7 @@ return bufferedImage;
 
 
 
-	public JsonElement getJSONobjFromJSONobj(JsonElement json, String key) {
+	public JsonElement getJSONobjFromJSONobj(String key) {
 		JsonElement newObj = null;
 
 		newObj = json.getAsJsonObject().get(key);
@@ -156,14 +193,7 @@ return bufferedImage;
 			return strPressure;
 
 		}
-		public String tempOneDecimal (String temperature) {
-			String strTemperature = "";
-			Double temp = Double.parseDouble(temperature); 
-			strTemperature = String.format("%.1f°F",temp);
 
-			return strTemperature;
-
-		}
 		public String windSpeed (String speed) {
 			String strSpeed = "";
 			Double spd = Double.parseDouble(speed); 
