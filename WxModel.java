@@ -31,7 +31,6 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 		try {
 			wuURL = new URL("https://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + ",US&appid=" + API_KEY
 					+ "&units=imperial");
-			System.out.println(wuURL);
 
 			InputStream is = wuURL.openStream();
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -39,11 +38,9 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 			is.close();
 			br.close();
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 
 	}
