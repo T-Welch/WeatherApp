@@ -63,12 +63,7 @@ public class WxController implements Initializable {
           if (weather.URLisValid(weather.urlForLatLongFromZip(zipcode)))
           {
             btnGetWeather.setText("Get Weather");
-            // JsonElement jse = weather.getJSONwithAllInfo(weather.urlwithLatLon(weather.getLat(weather.getJSONObjWithLatLong(weather.urlForLatLongFromZip(zipcode))),
-            // weather.getLon(weather.getJSONObjWithLatLong(weather.urlForLatLongFromZip(zipcode)))));
-            // weather.getWx(zipcode);
-
-            // System.out.println(weather.getinfoSring("name"));
-            // lblCityName.setText( "City: "+ weather.getinfoSring("name"));
+            lblCityName.setText( "City: "+ weather.getCityName());
             // lblTime.setText(weather.unixTimetoLocalTime(weather.getinfoLong("dt")));
             // lblWeather.setText("Conditions: " + weather.getinfoArray("weather"));
             lblTemperature.setText("Temperature: " + weather.getTemp());
@@ -76,7 +71,7 @@ public class WxController implements Initializable {
             // pressure is in hectapascals and we need it in inches of mercury. 1 Hectopascals = 0.0295 Inches of mercury. Need to do 
             // conversion in a function also need to limit digits after decimal points to 2 
             lblPressure.setText("Pressure: " + weather.getPressure() + "inHg");
-            //lblWindDirection.setText("Wind Direction: " + weather.windDegreeAsDirection(weather.getinfoSring(weather.getJSONobjFromJSONobj("wind"), "deg")));
+            lblWindDirection.setText("Wind Direction: " + weather.getWindDIrection());
             lblHumdity.setText(weather.getHumidity());
             // lblVisibility.setText(weather.getVisibility());
             weather.getTemp();

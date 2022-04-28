@@ -72,6 +72,45 @@ public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
 		return pressure;
 	}
 
+	public String getWindDIrection() {
+		Integer degrees = Integer.parseInt(json.getAsJsonObject().get("main").getAsJsonObject().get("pressure").getAsString());
+		String direction = "";
+
+		if (degrees >= 337.5 || degrees < 22.5) {
+			direction = "N";
+		}
+		if (degrees >= 22.5 && degrees < 67.5 ) {
+			direction =  "NE";
+		}
+		if (degrees >= 67.5 && degrees < 112.5) {
+			direction =  "E";
+		}
+		if (degrees >= 112.5 && degrees < 157.5 ) {
+			direction =  "SE";
+		}
+		if (degrees >= 157.5 && degrees < 202.5) {
+			direction =  "S";
+		}
+		if (degrees >= 202.5 && degrees < 247.5) {
+			direction =  "SW";
+		}
+		if (degrees >= 247.5 && degrees < 292.5) {
+			direction =  "W";
+		}
+		if (degrees >= 292.5 && degrees < 337.5) {
+			direction =  "NW";
+		}
+		return direction;
+
+
+	}
+	public String getCityName() {
+		
+		String city = json.getAsJsonObject().get("name").getAsString();
+		
+		return city;
+	}
+
 
 
 	public URL urlForLatLongFromZip(String zipcode) throws MalformedURLException {
@@ -228,37 +267,37 @@ return bufferedImage;
 
 		}
 
-		public String windDegreeAsDirection(String StrDegrees) {
-			Integer degrees = Integer.parseInt(StrDegrees);
-			String direction = "";
+		// public String windDegreeAsDirection(String StrDegrees) {
+		// 	Integer degrees = Integer.parseInt(StrDegrees);
+		// 	String direction = "";
 
-			if (degrees >= 337.5 || degrees < 22.5) {
-				direction = "N";
-			}
-			if (degrees >= 22.5 && degrees < 67.5 ) {
-				direction =  "NE";
-			}
-			if (degrees >= 67.5 && degrees < 112.5) {
-				direction =  "E";
-			}
-			if (degrees >= 112.5 && degrees < 157.5 ) {
-				direction =  "SE";
-			}
-			if (degrees >= 157.5 && degrees < 202.5) {
-				direction =  "S";
-			}
-			if (degrees >= 202.5 && degrees < 247.5) {
-				direction =  "SW";
-			}
-			if (degrees >= 247.5 && degrees < 292.5) {
-				direction =  "W";
-			}
-			if (degrees >= 292.5 && degrees < 337.5) {
-				direction =  "NW";
-			}
-			return direction;
+		// 	if (degrees >= 337.5 || degrees < 22.5) {
+		// 		direction = "N";
+		// 	}
+		// 	if (degrees >= 22.5 && degrees < 67.5 ) {
+		// 		direction =  "NE";
+		// 	}
+		// 	if (degrees >= 67.5 && degrees < 112.5) {
+		// 		direction =  "E";
+		// 	}
+		// 	if (degrees >= 112.5 && degrees < 157.5 ) {
+		// 		direction =  "SE";
+		// 	}
+		// 	if (degrees >= 157.5 && degrees < 202.5) {
+		// 		direction =  "S";
+		// 	}
+		// 	if (degrees >= 202.5 && degrees < 247.5) {
+		// 		direction =  "SW";
+		// 	}
+		// 	if (degrees >= 247.5 && degrees < 292.5) {
+		// 		direction =  "W";
+		// 	}
+		// 	if (degrees >= 292.5 && degrees < 337.5) {
+		// 		direction =  "NW";
+		// 	}
+		// 	return direction;
 
-		}
+		// }
 
 		// public String getLocation() {
 
