@@ -21,7 +21,7 @@ import javafx.scene.image.Image;
 
 public class WxModel
 {
-public String API_KEY = "b5af7904a7026b0fb5b554e38d8fde0a";
+public String API_KEY = "";
 
 
 	private JsonElement json;
